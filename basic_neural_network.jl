@@ -21,7 +21,7 @@ y = [0 1 1 0]
 weights_1 = rand(size(x)[2], 4)
 output = zeros(size(y))
 
-# Test dot product matrix operation
+# Dot product matrix operation
 function dot_product(self::InitialConditions)
     return self.input * self.weights_1
 end
@@ -37,10 +37,13 @@ function sigmoid(t)
     return 1/(1 + exp(-t))
 end
 
-
 # Feedforward
 function feedforward(self::InitialConditions)
+    layer_1 = sigmoid.(self.input * self.weights_1)
+    layer_2 = sigmoid.(layer_1 * self.weights_2)
+    return layer_2
 end
+
 
 # Backpropogation
 # End of basic_neural_network.jl
